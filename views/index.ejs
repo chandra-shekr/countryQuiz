@@ -1,0 +1,41 @@
+<%- include("./partials/header"); -%>
+
+<div class="container-grid">
+
+    <div class="flex-head">
+
+        <div id = "score-head">
+
+            <h5>score: <strong><%= locals.game.score ? game.score : "0" %></strong></h3>
+        </div>
+        <div id="refresh-btn">
+            <!-- <form method="get"> -->
+                    <button id = 'refresh' type="button" class="btn btn-default btn-sm" ><i class="fa-solid fa-arrow-right fa-2x"></i>
+                        </button>
+
+            <!-- </form> -->
+
+        </div>
+    </div>
+
+    <div id="quiz-content">
+
+        <% if(locals.game.data.country) {%>
+            <h3><%= locals.game.data.country _%></h3>
+        <% } else { %>
+            <h3>start</h3>
+        <%}%>
+    
+        <form id = "game-form" method="post" action="/submit">
+            <div class="form-floating mb-3">
+            <input class="form-control" type="text" name="answer" id ="game-submit" placeholder="What's the capital city?" required/>
+
+            <label for="game-submit" >What's the capital city?</label>
+        </div>
+        <button type="submit" class = "btn btn-danger btn-md mt-3" id="submit-btn">submit</button> 
+    </form>
+</div>
+</div>
+<%- include("./partials/footer"); -%>
+
+<!-- https://codepen.io/carlosriera/pen/WxMjgJ -->

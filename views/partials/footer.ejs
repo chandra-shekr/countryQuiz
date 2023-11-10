@@ -1,0 +1,19 @@
+
+        </main>
+        <footer>
+            <div class="footer-container" id="footer">
+
+                <% if(locals.appinfo) {%>
+                    <p>copyright © <%= appinfo.year %></p>
+                <% } %>
+            </div>
+        <p>
+        </footer>
+    <script type="module">
+        import {app, plusOne} from "./animation.js"
+        var info = '<%- JSON.stringify(locals.appinfo) %>'
+        app(info)
+        plusOne(false)
+    </script>
+    </body>
+</html>

@@ -10,10 +10,14 @@
         <p>
         </footer>
     <script type="module">
-        import {app, plusOne} from "./animation.js"
-        var info = '<%- JSON.stringify(locals.appinfo) %>'
-        app(info)
-        plusOne(false)
+        import {plusOne} from "./animation.js"
+        let newsession = '<%- JSON.stringify(locals.game.newsession) %>'
+        let reset = '<%- JSON.stringify(locals.game.reset) %>'
+        let response = '<%- JSON.stringify(locals.game.data.response) %>'
+        plusOne(newsession, reset, response)
+        if(window.history.replaceState){
+            window.history.replaceState(null, null, window.location.href)
+        }
     </script>
     </body>
 </html>

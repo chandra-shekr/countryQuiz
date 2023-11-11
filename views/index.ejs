@@ -6,14 +6,13 @@
 
         <div id = "score-head">
 
-            <h5>score: <strong><%= locals.game.score ? game.score : "0" %></strong></h3>
+            <h5>score: <strong><%= locals.game.data.score %></strong></h3>
         </div>
         <div id="refresh-btn">
-            <!-- <form method="get"> -->
-                    <button id = 'refresh' type="button" class="btn btn-default btn-sm" ><i class="fa-solid fa-arrow-right fa-2x"></i>
+            <form method="get">
+                    <button id = 'refresh' type="submit" class="btn btn-default btn-sm"  formaction="/reset"><i class="fa-solid fa-refresh fa-2x"></i>
                         </button>
-
-            <!-- </form> -->
+            </form>
 
         </div>
     </div>
@@ -21,14 +20,15 @@
     <div id="quiz-content">
 
         <% if(locals.game.data.country) {%>
-            <h3><%= locals.game.data.country _%></h3>
+            <h3><%= locals.game.data.country _%><span><%= locals.game.data.flag %></span></h3>
         <% } else { %>
             <h3>start</h3>
         <%}%>
     
-        <form id = "game-form" method="post" action="/submit">
+        <form id = "game-form" method="post" action="/">
             <div class="form-floating mb-3">
-            <input class="form-control" type="text" name="answer" id ="game-submit" placeholder="What's the capital city?" required/>
+            <input type="hidden" name="original" value="<%= locals.game.data.capital %>" />
+            <input class="form-control" type="text" name="answer" id ="game-submit" placeholder="What's the capital city?" autofocus autocomplete="off" required/>
 
             <label for="game-submit" >What's the capital city?</label>
         </div>

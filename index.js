@@ -1,18 +1,18 @@
 "use strict";
+import dotenv from "dotenv/config"
 import express, { application } from "express"
 import cors from 'cors'
 import cookieParser from "cookie-parser"
 import { fileURLToPath } from "url"
 import { join, dirname } from "path"
 import { randomUUID } from "crypto"
-import db, { question, verifyAnswer, computeScore } from "./src/util"
+import db, { question, verifyAnswer, computeScore } from "./src/util.js"
 
 
-
-const app = express()
-const port = 3900
-const server = app.listen(port, () => { console.debug("Listening to port: ", port) })
 const __dirname = join(dirname(fileURLToPath(import.meta.url)), "public")
+const app = express()
+const port = process.env.PORT || 3900
+const server = app.listen(port, () => { console.debug("Listening to port: ", port) })
 const appinfo = {
     year: new Date().getFullYear()
 }
@@ -78,7 +78,6 @@ app.get("/", async (req, res) => {
 })
 
 app.post("/", async (req, res) => {
-    console.log(req.body)
     let response = verifyAnswer(req.body.original, req.body.answer)
     let score = computeScore(req.signedCookies.score, response)
     let q = await question()

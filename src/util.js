@@ -1,9 +1,9 @@
 "use strict";
-import { Client } from "pg"
+import pg from "pg"
 import fs from "fs";
 
 
-const db = new Client({
+const db = new pg.Client({
     user: process.env.PDB_USER,
     host: process.env.PDB_HOST,
     database: process.env.PDB,

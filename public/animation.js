@@ -23,7 +23,7 @@ function plusOne(newsession, reset, response) {
                     }, 2000)
                 })
 
-        }, 500)
+        }, 100)
     }
 
 }

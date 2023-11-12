@@ -54,6 +54,7 @@ body {
   color: gray;
   position: absolute;
   bottom: 5px;
+  left: 5px;
 }
 
 .plus-one {
@@ -85,7 +86,7 @@ body {
     background-color: white;
     border-radius: 5px;
     height: 450px;
-    width: 400px;
+    width: 350px;
     box-shadow: 0px 0px 50px 30px rgba(57, 53, 53, 0.5);
   }
   .container-grid > h5 {
@@ -123,7 +124,7 @@ body {
   @keyframes fade-in-up {
     0%,
     10% {
-      top: -90%;
+      top: -95%;
       opacity: 1;
     }
     100% {

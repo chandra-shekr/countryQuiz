@@ -17,11 +17,11 @@ db.connect()
     .catch(err => console.error(err.message))
 
 
-const question = async () => {
+const question = async (file) => {
 
     try {
 
-        const query = fs.readFileSync("./src/query.sql", { encoding: 'utf8' })
+        const query = fs.readFileSync(file, { encoding: 'utf8' })
         const rows = await db.query(query)
         return rows
     } catch (err) {

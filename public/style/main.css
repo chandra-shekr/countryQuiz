@@ -47,3 +47,41 @@ body {
   left: 5px;
   text-align: center;
 }
+
+@media only screen and (max-width: 500px) {
+  .quizzes-container-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50px 300px 300px;
+    margin: 15% auto 10% auto;
+    background-color: #717378;
+    border-radius: 10px;
+    height: 650px;
+    width: 350px;
+    box-shadow: 0px 0px 50px 30px rgba(57, 53, 53, 0.5);
+  }
+
+  #quizzes-title {
+    grid-column: span 2;
+    margin: 5px;
+    text-align: center;
+    font-family: "Poppins", sans-serif !important;
+  }
+
+  .quizzes {
+    grid-column: span 2;
+    font-family: "Open Sans", sans-serif;
+    margin: 20px 80px;
+  }
+
+  .card-body {
+    font-size: medium;
+    box-shadow: 0px 0px 50px 30px rgba(57, 53, 53, 0.5);
+    text-align: center;
+  }
+
+  .card-img-top {
+    height: 140px;
+    float: left;
+  }
+}

@@ -115,7 +115,6 @@ const svgScroll = () => {
                 switch (true) {
                     case leftOrRight === "left":
 
-                        console.log("left");
                         renderScroll(svg, 0, -1)
                         break;
 
@@ -123,20 +122,17 @@ const svgScroll = () => {
                     case leftOrRight === "right":
 
 
-                        console.log("right");
                         renderScroll(svg, 0, 1)
                         break;
 
 
                     case upOrDown === "up":
 
-                        console.log("up");
                         renderScroll(svg, 1, -1)
                         break;
 
                     case upOrDown === "down":
 
-                        console.log("down");
                         renderScroll(svg, 1, 1)
                         break;
                 }
@@ -153,4 +149,32 @@ const svgScroll = () => {
     });
 };
 
-export { app, plusOne, checkevent, SVGZoom, svgScroll };
+
+function mapEventHandler(res) {
+    document.querySelectorAll("path").forEach(p =>
+        p.addEventListener('click', () => {
+
+            let id = p.getAttribute("id")
+            res === id
+                ?
+                $(`#${res}`).css("fill", "limegreen")
+
+                :
+
+                $(`#${res}`).css("fill", "red")
+
+
+            setTimeout(() => {
+
+                $("#submit-response").val(res)
+                $("#submit-original").val(id)
+                $("#submit-countries").submit()
+            }, 2 * 1000)
+
+        })
+    )
+
+
+}
+
+export { app, plusOne, checkevent, SVGZoom, svgScroll, mapEventHandler };

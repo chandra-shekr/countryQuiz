@@ -152,7 +152,7 @@ const svgScroll = () => {
 
 function mapEventHandler(res) {
     document.querySelectorAll("path").forEach(p =>
-        p.addEventListener('click', () => {
+        p.addEventListener('dblclick', () => {
 
             let id = p.getAttribute("id")
             res === id

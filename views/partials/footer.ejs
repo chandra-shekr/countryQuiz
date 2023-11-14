@@ -1,23 +1,7 @@
 
-        </main>
-        <footer>
-            <div class="footer-container" id="footer">
+<div class="footer-container" id="footer">
 
-                <% if(locals.appinfo) {%>
-                    <p>copyright © <%= appinfo.year %></p>
-                <% } %>
-            </div>
-        <p>
-        </footer>
-    <script type="module">
-        import {plusOne} from "./animation.js"
-        let newsession = '<%- JSON.stringify(locals.game.newsession) %>'
-        let reset = '<%- JSON.stringify(locals.game.reset) %>'
-        let response = '<%- JSON.stringify(locals.game.data.response) %>'
-        plusOne(newsession, reset, response)
-        if(window.history.replaceState){
-            window.history.replaceState(null, null, window.location.href)
-        }
-    </script>
-    </body>
-</html>
+    <% if(locals.appinfo) {%>
+        <p>copyright © <%= appinfo.year %></p>
+    <% } %>
+</div>

@@ -1,41 +1,34 @@
-<%- include("./partials/header"); -%>
-
-<div class="container-grid">
-
-    <div class="flex-head">
-
-        <div id = "score-head">
-
-            <h5>score: <strong><%= locals.game.data.score %></strong></h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/header"); -%>
+</head>
+<body>
+   <header></header> 
+   <main>
+    <div class="quizzes-container-grid">
+        <div id="quizzes-title" class="quizzes">
+            <h2>Quiz Time</h2>
         </div>
-        <div id="refresh-btn">
-            <form method="get">
-                    <button id = 'refresh' type="submit" class="btn btn-default btn-sm"  formaction="/reset"><i class="fa-solid fa-refresh fa-2x"></i>
-                        </button>
-            </form>
+        <div class="quizzes card" id="capitals-quiz">
+            <a href="/capitalsQuiz"><img class="card-img-top" src="./images/capitals.jpg" alt="capitals quiz" />
+            <div class="card-body"></a>
+                <p>Capital Quest: Unlock the World's Capitals!</p>
+            </div>
+
+
+        </div>
+        <div class="quizzes card" id="map-quiz">
+            <a href="/countriesQuiz"><img class="card-img-top" src="./images/countries.jpg" alt="countries quiz" />
+            <div class="card-body"></a>
+                <p>Explore the Globe: Test Your World Knowledge</p>
+            </div>
 
         </div>
     </div>
-
-    <div id="quiz-content">
-
-        <% if(locals.game.data.country) {%>
-            <h3><%= locals.game.data.country _%><span><%= locals.game.data.flag %></span></h3>
-        <% } else { %>
-            <h3>start</h3>
-        <%}%>
-    
-        <form id = "game-form" method="post" action="/">
-            <div class="form-floating mb-3">
-            <input type="hidden" name="original" value="<%= locals.game.data.capital %>" />
-            <input class="form-control" type="text" name="answer" id ="game-submit" placeholder="What's the capital city?" autofocus autocomplete="off" required/>
-
-            <label for="game-submit" >What's the capital city?</label>
-        </div>
-        <button type="submit" class = "btn btn-danger btn-md mt-3" id="submit-btn">submit</button> 
-    </form>
-</div>
-</div>
-<%- include("./partials/footer"); -%>
-
-<!-- https://codepen.io/carlosriera/pen/WxMjgJ -->
+   </main>
+   <footer>
+    <%- include("./partials/footer"); -%>
+   </footer>
+</body>
+</html>

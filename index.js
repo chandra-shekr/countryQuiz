@@ -50,7 +50,24 @@ app.use((req, res, next) => {
 
 //---------------------------------------------------
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
+
+    res.status(200).render("index.ejs", { appinfo: appinfo })
+})
+
+app.get("/countriesQuiz", (req, res) => {
+
+    res.status(200).render("countriesQuiz", {
+        appinfo: appinfo,
+        game: {
+            data: {
+                score: 0,
+
+            },
+        }
+    })
+})
+app.get("/capitalsQuiz", async (req, res) => {
 
     let newsession = req.signedCookies.id ? false : true
     let reset = /true/.test(req.signedCookies.reset) ? true : false
@@ -61,7 +78,7 @@ app.get("/", async (req, res) => {
         score = 0
         res.cookie('reset', false, cookieConfig)
     }
-    res.status(200).render("index", {
+    res.status(200).render("capitalsQuiz", {
         appinfo: appinfo,
         game: {
             data: {
@@ -77,12 +94,12 @@ app.get("/", async (req, res) => {
 
 })
 
-app.post("/", async (req, res) => {
+app.post("/capitalsQuiz", async (req, res) => {
     let response = verifyAnswer(req.body.original, req.body.answer)
     let score = computeScore(req.signedCookies.score, response)
     let q = await question()
     res.cookie("score", score, cookieConfig)
-    res.status(200).render("index", {
+    res.status(200).render("capitalsQuiz", {
         appinfo: appinfo,
         game: {
             data: {
@@ -100,11 +117,11 @@ app.post("/", async (req, res) => {
 
 
 
-app.get("/reset", (req, res) => {
+app.get("/capitalsQuiz/reset", (req, res) => {
 
     res.cookie("score", 0, cookieConfig)
     res.cookie("reset", true, cookieConfig)
-    res.status(301).redirect("/")
+    res.status(301).redirect("/capitalsQuiz")
 
 
 })

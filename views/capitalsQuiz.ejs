@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partials/header"); -%>
+    <link rel="stylesheet" href="./style/capitalsQuiz.css">
+</head>
+
+<body>
+
+    <header>
+        <form method="GET">
+            <button id='refresh' type="submit" class="btn btn-danger btn-sm" formaction="/"><i
+                class="fa-solid fa-arrow-left fa-4x"></i>
+            </button>
+        </form>
+    </header>
+    <main>
+    <div class="container-grid">
+
+        <div class="flex-head">
+
+            <div id="score-head">
+
+                <h5>score: <strong>
+                        <%= locals.game.data.score %>
+                    </strong></h3>
+            </div>
+            <div id="refresh-btn">
+                <form method="get">
+                    <button id='refresh' type="submit" class="btn btn-default btn-sm" formaction="/capitalsQuiz/reset"><i
+                            class="fa-solid fa-refresh fa-2x"></i>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+        <div id="quiz-content">
+
+            <% if(locals.game.data.country) {%>
+                <h3>
+                    <%= locals.game.data.country _%><span>
+                            <%= locals.game.data.flag %>
+                        </span>
+                </h3>
+                <% } else { %>
+                    <h3>start</h3>
+                    <%}%>
+
+                        <form id="game-form" method="post" action="/capitalsQuiz">
+                            <div class="form-floating mb-3">
+                                <input type="hidden" name="original" value="<%= locals.game.data.capital %>" />
+                                <input class="form-control" type="text" name="answer" id="game-submit"
+                                    placeholder="What's the capital city?" autofocus autocomplete="off" required />
+
+                                <label for="game-submit">What's the capital city?</label>
+                            </div>
+                            <button type="submit" class="btn btn-danger btn-md mt-3" id="submit-btn">submit</button>
+                        </form>
+        </div>
+    </div>
+    </main>
+    <footer>
+        <%- include("./partials/footer"); -%>
+    </footer>
+
+    <script type="module">
+        import { plusOne } from "./animation.js"
+        let newsession = '<%- JSON.stringify(locals.game.newsession) %>'
+        let reset = '<%- JSON.stringify(locals.game.reset) %>'
+        let response = '<%- JSON.stringify(locals.game.data.response) %>'
+        plusOne(newsession, reset, response)
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href)
+        }
+    </script>
+</body>
+
+</html>
+
+<!-- https://codepen.io/carlosriera/pen/WxMjgJ -->
